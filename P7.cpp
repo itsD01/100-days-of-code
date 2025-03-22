@@ -1,0 +1,3 @@
+void nStarTriangle(int n) {
+    
+    }
