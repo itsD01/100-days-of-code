@@ -1,24 +1,20 @@
 class Solution {
-  public:
-    int getSecondLargest(vector<int> &arr) {
+public:
+    int getSecondLargest(vector<int>& arr) {
         int n = arr.size();
-        if (n < 2) return -1; 
-
-        for (int i = 0; i < n - 1; i++) {
-            int maxIndex = i;
-            for (int j = i + 1; j < n; j++) {
-                if (arr[j] > arr[maxIndex]) {
-                    maxIndex = j;
-                }
-            }
-            swap(arr[i], arr[maxIndex]);
-        }
-
+        if (n < 2) return -1;
         
-        for (int i = 1; i < n; i++) {
-            if (arr[i] < arr[0]) return arr[i]; 
+        int largest = INT_MIN, secondLargest = INT_MIN;
+        
+        for (int i = 0; i < n; i++) {
+            if (arr[i] > largest) {
+                secondLargest = largest;
+                largest = arr[i];
+            } else if (arr[i] > secondLargest && arr[i] != largest) {
+                secondLargest = arr[i];
+            }
         }
-
-        return -1; 
+        
+        return (secondLargest == INT_MIN) ? -1 : secondLargest;
     }
 };
